@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.5.RELEASE'
+    }
+
+    repositories {
+        maven { url 'http://127.0.0.1:8081/nexus/content/groups/public' }
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+//project.name = 'backend-api'
+//project.group = 'io.shenzhang.springboot2'
+//project.version = '0.0.1-SNAPSHOT'
+
+jar {
+    baseName = 'myproject'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile(
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-aop',
+            'org.springframework.boot:spring-boot-starter-actuator',
+
+            'com.google.guava:guava:18.0'
+    )
+
+    testCompile(
+            'junit:junit:4.11',
+            'org.springframework.boot:spring-boot-starter-test'
+    )
+}
+
+springBoot {
+    buildInfo()
+}
+
+//applicationDefaultJvmArgs = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005']

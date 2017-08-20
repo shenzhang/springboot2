@@ -1,0 +1,27 @@
+apply plugin: 'idea'
+
+idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://127.0.0.1:8081/nexus/content/groups/public' }
+        jcenter()
+    }
+}
+
+idea.project.ipr {
+    withXml { provider ->
+        provider.node.component
+                .find { it.@name == 'VcsDirectoryMappings' }
+                .mapping.@vcs = 'Git'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4'
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'springboot2'
+
+include 'springboot2-api'
+include 'springboot1-api'
+include 'backend-api'
